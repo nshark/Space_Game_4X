@@ -522,7 +522,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpaceSprites/star_large.png
+/build:SpaceSprites/star_large.png;SpaceSprites/star_large
 
 #begin SpaceSprites/star_medium.png
 /importer:TextureImporter
@@ -534,7 +534,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpaceSprites/star_medium.png
+/build:SpaceSprites/star_medium.png;SpaceSprites/star_medium
 
 #begin SpaceSprites/star_small.png
 /importer:TextureImporter
@@ -546,7 +546,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpaceSprites/star_small.png
+/build:SpaceSprites/star_small.png;SpaceSprites/star_small
 
 #begin SpaceSprites/star_tiny.png
 /importer:TextureImporter
@@ -558,7 +558,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:SpaceSprites/star_tiny.png
+/build:SpaceSprites/star_tiny.png;SpaceSprites/star_tiny
 
 #begin SpaceSprites/station_A.png
 /importer:TextureImporter

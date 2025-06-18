@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameGum;
+using Space_Game_4X.Components;
 using Space_Game_4X.Screens;
+using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 
 namespace Space_Game_4X;
 
@@ -16,6 +18,7 @@ public class SpaceGame4X : Game
     public static float CameraScale = 1;
     public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
+    private HUD screen;
     private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
     private Star[] _stars;
@@ -35,9 +38,16 @@ public class SpaceGame4X : Game
     {
         // TODO: Add your initialization logic here
         Gum.Initialize(this, "GumUI/gumUI.gumx");
-        var screen = new HUD();
+        screen = new HUD();
+        screen.TurnMenuInstance.Click += OnEndTurn;
+        screen.TurnMenuInstance.ButtonCategoryState = TurnMenu.ButtonCategory.Enabled;
         screen.AddToRoot();
         base.Initialize();
+    }
+
+    private void OnEndTurn(object sender, EventArgs e)
+    {
+        screen.TurnMenuInstance.CounterNumText = (int.Parse(screen.TurnMenuInstance.CounterNumText) + 1).ToString();
     }
 
     protected override void LoadContent()
@@ -49,6 +59,7 @@ public class SpaceGame4X : Game
 
     protected override void Update(GameTime gameTime)
     {
+        Gum.Update(gameTime);
         if (Math.Abs(_graphics.GraphicsDevice.Viewport.Width / 2f - CameraOffset.X) > 0.001 ||
             Math.Abs(_graphics.GraphicsDevice.Viewport.Height / 2f - CameraOffset.Y) > 0.001)
         {

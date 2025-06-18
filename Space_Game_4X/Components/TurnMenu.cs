@@ -13,7 +13,7 @@ namespace Space_Game_4X.Components
     {
         partial void CustomInitialize()
         {
-        
+            
         }
     }
 }

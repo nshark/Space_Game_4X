@@ -4,10 +4,10 @@
   <State>
     <Name>Default</Name>
     <Variable>
-      <Type>string</Type>
-      <Name>TurnMenuInstance.CounterNumText</Name>
-      <ExposedAsName>Turn Counter</ExposedAsName>
-      <SetsValue>false</SetsValue>
+      <Type>ButtonCategory</Type>
+      <Name>TurnMenuInstance.ButtonCategoryState</Name>
+      <Value xsi:type="xsd:string">Enabled</Value>
+      <SetsValue>true</SetsValue>
     </Variable>
   </State>
   <Instance>

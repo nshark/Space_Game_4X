@@ -5,6 +5,11 @@
   <State>
     <Name>Default</Name>
     <Variable>
+      <Type>ButtonCategory</Type>
+      <Name>ButtonCategoryState</Name>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>int</Type>
       <Name>CounterNum.Blue</Name>
       <Value xsi:type="xsd:int">0</Value>
@@ -125,6 +130,23 @@
       <Type>bool</Type>
       <Name>End Turn Button.Animate</Name>
       <Value xsi:type="xsd:boolean">false</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>End Turn Button.ExposeChildrenEvents</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>End Turn Button.HasEvents</Name>
+      <Value xsi:type="xsd:boolean">true</Value>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>string</Type>
+      <Name>End Turn Button.Parent</Name>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -356,6 +378,30 @@
       <Value />
     </VariableList>
   </State>
+  <Category>
+    <Name>ButtonCategory</Name>
+    <State>
+      <Name>Enabled</Name>
+    </State>
+    <State>
+      <Name>Disabled</Name>
+    </State>
+    <State>
+      <Name>Highlighted</Name>
+    </State>
+    <State>
+      <Name>Pushed</Name>
+    </State>
+    <State>
+      <Name>HighlightedFocused</Name>
+    </State>
+    <State>
+      <Name>Focused</Name>
+    </State>
+    <State>
+      <Name>DisabledFocused</Name>
+    </State>
+  </Category>
   <Instance>
     <Name>TextOfButton</Name>
     <BaseType>Text</BaseType>
@@ -376,5 +422,9 @@
     <BaseType>Text</BaseType>
     <DefinedByBase>false</DefinedByBase>
   </Instance>
-  <Behaviors />
+  <Behaviors>
+    <ElementBehaviorReference>
+      <BehaviorName>ButtonBehavior</BehaviorName>
+    </ElementBehaviorReference>
+  </Behaviors>
 </ComponentSave>

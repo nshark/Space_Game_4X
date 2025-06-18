@@ -38,12 +38,6 @@ partial class HUD : MonoGameGum.Forms.Controls.FrameworkElement
     }
     public TurnMenu TurnMenuInstance { get; protected set; }
 
-    public string TurnCounter
-    {
-        get => TurnMenuInstance.CounterNumText;
-        set => TurnMenuInstance.CounterNumText = value;
-    }
-
     public HUD(InteractiveGue visual) : base(visual) { }
     public HUD()
     {

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<StandardElementSave xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<StandardElementSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>Container</Name>
   <State>
     <Name>Default</Name>
@@ -66,6 +66,12 @@
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
+      <Type>string</Type>
+      <Name>Guide</Name>
+      <Category>Position</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
       <Type>bool</Type>
       <Name>HasEvents</Name>
       <Value xsi:type="xsd:boolean">true</Value>
@@ -95,9 +101,23 @@
     </Variable>
     <Variable>
       <Type>bool</Type>
+      <Name>IsOverrideInCodeGen</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <Category>Xamarin Forms</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
       <Name>IsRenderTarget</Name>
       <Value xsi:type="xsd:boolean">false</Value>
       <Category>Rendering</Category>
+      <SetsValue>true</SetsValue>
+    </Variable>
+    <Variable>
+      <Type>bool</Type>
+      <Name>IsXamarinFormsControl</Name>
+      <Value xsi:type="xsd:boolean">false</Value>
+      <Category>Xamarin Forms</Category>
       <SetsValue>true</SetsValue>
     </Variable>
     <Variable>
@@ -135,7 +155,7 @@
       <Name>Rotation</Name>
       <Value xsi:type="xsd:float">0</Value>
       <Category>Flip and Rotation</Category>
-      <SetsValue>true</SetsValue>
+      <SetsValue>false</SetsValue>
     </Variable>
     <Variable>
       <Type>float</Type>

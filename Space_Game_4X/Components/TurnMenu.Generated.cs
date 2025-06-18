@@ -11,7 +11,7 @@ using RenderingLibrary.Graphics;
 using System.Linq;
 
 namespace Space_Game_4X.Components;
-partial class TurnMenu : MonoGameGum.Forms.Controls.FrameworkElement
+partial class TurnMenu : MonoGameGum.Forms.Controls.Button
 {
     [System.Runtime.CompilerServices.ModuleInitializer]
     public static void RegisterRuntimeType()
@@ -30,6 +30,41 @@ partial class TurnMenu : MonoGameGum.Forms.Controls.FrameworkElement
             var gue = template.CreateContent(null, true) as InteractiveGue;
             return gue;
         });
+    }
+    public enum ButtonCategory
+    {
+        Enabled,
+        Disabled,
+        Highlighted,
+        Pushed,
+        HighlightedFocused,
+        Focused,
+        DisabledFocused,
+    }
+
+    ButtonCategory? _buttonCategoryState;
+    public ButtonCategory? ButtonCategoryState
+    {
+        get => _buttonCategoryState;
+        set
+        {
+            _buttonCategoryState = value;
+            if(value != null)
+            {
+                if(Visual.Categories.ContainsKey("ButtonCategory"))
+                {
+                    var category = Visual.Categories["ButtonCategory"];
+                    var state = category.States.Find(item => item.Name == value.ToString());
+                    this.Visual.ApplyState(state);
+                }
+                else
+                {
+                    var category = ((Gum.DataTypes.ElementSave)this.Visual.Tag).Categories.FirstOrDefault(item => item.Name == "ButtonCategory");
+                    var state = category.States.Find(item => item.Name == value.ToString());
+                    this.Visual.ApplyState(state);
+                }
+            }
+        }
     }
     public TextRuntime TextOfButton { get; protected set; }
     public SpriteRuntime End_Turn_Button { get; protected set; }

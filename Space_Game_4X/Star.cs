@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -26,7 +27,7 @@ public class Star
     {
         if (starType == -1)
         {
-            starType = SpaceGame4X.rand.Next(0, 3);
+            _starType = SpaceGame4X.Rand.Next(0, 3);
         }
 
         pos = position;
@@ -34,6 +35,6 @@ public class Star
 
     public void AddToSpriteBatch(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_starTextures[_starType], pos, Color.White);
+        spriteBatch.Draw(_starTextures[_starType], Vector2.Multiply(pos + SpaceGame4X.CameraPos, SpaceGame4X.CameraScale), null, Color.White, 0f, Vector2.Zero, SpaceGame4X.CameraScale, SpriteEffects.None, 0);
     }
 }

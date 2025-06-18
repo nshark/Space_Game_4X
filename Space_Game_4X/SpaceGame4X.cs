@@ -8,19 +8,22 @@ namespace Space_Game_4X;
 public class SpaceGame4X : Game
 {
     //Consts
-    private const int NumberOfStars = 100;
-    
-    
-    public static Random rand = new Random();
+    private const float CameraSpeed = 0.1f;
+ 1 
+    public static Vector2 CameraPos = new Vector2();
+    public static float CameraScale = 1;
+    public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Star[] _stars;
+    private int _scrollLastFrame = 0;
     public SpaceGame4X()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _stars = new[] { new Star(new Vector2(50, 50)) };
+        _stars = GenerationPolicy.GenerateStarfield();
+        _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 
     protected override void Initialize()
@@ -42,9 +45,33 @@ public class SpaceGame4X : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+        KeyboardState kb = Keyboard.GetState();
+        MouseState m = Mouse.GetState();
+        if (kb.IsKeyDown(Keys.W))
+        {
+            CameraPos.Y += gameTime.ElapsedGameTime.Milliseconds * CameraSpeed;
+        }
+        if (kb.IsKeyDown(Keys.S))
+        {
+            CameraPos.Y -= gameTime.ElapsedGameTime.Milliseconds * CameraSpeed;
+        }
+        if (kb.IsKeyDown(Keys.A))
+        {
+            CameraPos.X += gameTime.ElapsedGameTime.Milliseconds * CameraSpeed;
+        }
+        if (kb.IsKeyDown(Keys.D))
+        {
+            CameraPos.X -= gameTime.ElapsedGameTime.Milliseconds * CameraSpeed;
+        }
 
-        // TODO: Add your update logic here
+        int scrollDifference = m.ScrollWheelValue - _scrollLastFrame;
+        if (scrollDifference != 0)
+        {
+            float zoomChange = 0.1f * (scrollDifference / 120f);
+            CameraScale = MathHelper.Clamp(CameraScale + zoomChange, 0.1f, 10);
+        }
 
+        _scrollLastFrame = m.ScrollWheelValue;
         base.Update(gameTime);
     }
 

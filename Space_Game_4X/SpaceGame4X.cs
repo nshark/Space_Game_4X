@@ -9,7 +9,6 @@ public class SpaceGame4X : Game
 {
     //Consts
     private const float CameraSpeed = 0.1f;
- 1 
     public static Vector2 CameraPos = new Vector2();
     public static float CameraScale = 1;
     public static Random Rand = new Random();

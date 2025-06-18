@@ -16,6 +16,7 @@ public class SpaceGame4X : Game
     private SpriteBatch _spriteBatch;
     private Star[] _stars;
     private int _scrollLastFrame = 0;
+    public static Vector2 CameraOffset = Vector2.Zero;
     public SpaceGame4X()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -41,6 +42,12 @@ public class SpaceGame4X : Game
 
     protected override void Update(GameTime gameTime)
     {
+        if (Math.Abs(_graphics.GraphicsDevice.Viewport.Width / 2f - CameraOffset.X) > 0.001 ||
+            Math.Abs(_graphics.GraphicsDevice.Viewport.Height / 2f - CameraOffset.Y) > 0.001)
+        {
+            CameraOffset.X = _graphics.GraphicsDevice.Viewport.Width / 2f;
+            CameraOffset.Y = _graphics.GraphicsDevice.Viewport.Height / 2f;
+        }
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();

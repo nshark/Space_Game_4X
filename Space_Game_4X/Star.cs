@@ -13,6 +13,11 @@ public class Star
     private Vector2 pos;
     //determines which star sprite to use - from 0-3
     private int _starType;
+
+    public Vector2 Position
+    {
+        get => pos;
+    }
     public static void InitTextures(Game game)
     {
         _starTextures = new[]

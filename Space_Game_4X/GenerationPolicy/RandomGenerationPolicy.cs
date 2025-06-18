@@ -2,15 +2,14 @@ using Microsoft.Xna.Framework;
 
 namespace Space_Game_4X;
 
-public class GenerationPolicy
+public class RandomGenerationPolicy : IGenerationPolicy
 {
     //Consts
     private const int NumberOfStars = 100;
     private const int StarfieldWidth = 5000;
     private const int StarfieldHeight = 5000;
     
-    
-    public static Star[] GenerateStarfield()
+    public Star[] GenerateStarfield()
     {
         Star[] stars = new Star[NumberOfStars];
         for (int i = 0; i < NumberOfStars; i++)

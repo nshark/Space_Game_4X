@@ -21,12 +21,13 @@ public class SpaceGame4X : Game
     private Star[] _stars;
     private int _scrollLastFrame = 0;
     public static Vector2 CameraOffset = Vector2.Zero;
+    private readonly IGenerationPolicy _generationPolicy = new RandomGenerationPolicy();
     public SpaceGame4X()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _stars = GenerationPolicy.GenerateStarfield();
+        _stars = _generationPolicy.GenerateStarfield();
         _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 

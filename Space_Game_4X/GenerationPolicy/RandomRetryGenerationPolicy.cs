@@ -61,6 +61,7 @@ public class RandomRetryGenerationPolicy : IGenerationPolicy
             {
                 // might be better to throw an exception?
                 Console.Error.WriteLine("Exceeded maximum number of retries for random star generation");
+                break;
             }
         }
 

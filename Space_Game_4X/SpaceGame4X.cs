@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameGum;
+using Space_Game_4X.Screens;
 
 namespace Space_Game_4X;
 
@@ -9,10 +11,12 @@ public class SpaceGame4X : Game
 {
     //Consts
     private const float CameraSpeed = 0.1f;
+    
     public static Vector2 CameraPos = new Vector2();
     public static float CameraScale = 1;
     public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
+    private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
     private Star[] _stars;
     private int _scrollLastFrame = 0;
@@ -29,7 +33,9 @@ public class SpaceGame4X : Game
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-
+        Gum.Initialize(this, "GumUI/gumUI.gumx");
+        var screen = new HUD();
+        screen.AddToRoot();
         base.Initialize();
     }
 
@@ -91,7 +97,7 @@ public class SpaceGame4X : Game
         }
         _spriteBatch.End();
         // TODO: Add your drawing code here
-        
+        Gum.Draw();
         base.Draw(gameTime);
     }
 }

@@ -1,4 +1,4 @@
-//Code for Star Menu
+//Code for StarMenu
 using GumRuntime;
 using MonoGameGum.GueDeriving;
 using Space_Game_4X.Components;
@@ -20,7 +20,7 @@ partial class StarMenu : MonoGameGum.Forms.Controls.FrameworkElement
         var template = new MonoGameGum.Forms.VisualTemplate((vm, createForms) =>
         {
             var visual = new MonoGameGum.GueDeriving.ContainerRuntime();
-            var element = ObjectFinder.Self.GetElementSave("Star Menu");
+            var element = ObjectFinder.Self.GetElementSave("StarMenu");
             element.SetGraphicalUiElement(visual, RenderingLibrary.SystemManagers.Default);
             if(createForms) visual.FormsControlAsObject = new StarMenu(visual);
             visual.Width = 0;
@@ -30,7 +30,7 @@ partial class StarMenu : MonoGameGum.Forms.Controls.FrameworkElement
             return visual;
         });
         MonoGameGum.Forms.Controls.FrameworkElement.DefaultFormsTemplates[typeof(StarMenu)] = template;
-        ElementSaveExtensions.RegisterGueInstantiation("Star Menu", () => 
+        ElementSaveExtensions.RegisterGueInstantiation("StarMenu", () => 
         {
             var gue = template.CreateContent(null, true) as InteractiveGue;
             return gue;

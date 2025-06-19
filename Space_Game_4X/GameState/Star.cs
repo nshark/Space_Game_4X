@@ -13,7 +13,7 @@ public class Star
     //determines which star sprite to use - from 0-3
     public int StarType { get; set; }
 
-    public Planet[] Planets;
+    public Planet[] Planets { get; set; }
     public static void InitTextures(Game game)
     {
         _starTextures = new[]

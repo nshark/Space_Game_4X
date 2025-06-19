@@ -13,8 +13,8 @@ public class Planet
         Types.AddItem("Continental", 2.5);
         Types.AddItem("Gaia", 0.1);
     }
-    public string Type;
-    public int Size;
+    public string Type { get; set; }
+    public int Size { get; set; }
     public Planet()
     {
         Size = SpaceGame4X.Rand.Next(5, 15);

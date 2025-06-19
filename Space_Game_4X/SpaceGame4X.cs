@@ -30,7 +30,6 @@ public class SpaceGame4X : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _gameState.Stars = _generationPolicy.GenerateStarfield();
         _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 

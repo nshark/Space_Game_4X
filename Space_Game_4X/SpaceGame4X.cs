@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGameGum;
 using Space_Game_4X.Components;
 using Space_Game_4X.Screens;
+using Space_Game_4X.Serialization;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
 
 namespace Space_Game_4X;
@@ -25,6 +26,7 @@ public class SpaceGame4X : Game
     private int _scrollLastFrame = 0;
     public static Vector2 CameraOffset = Vector2.Zero;
     private readonly IGenerationPolicy _generationPolicy = new RandomRetryGenerationPolicy();
+    private KeyboardState _previousKeyboardState;
     public SpaceGame4X()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -48,7 +50,7 @@ public class SpaceGame4X : Game
     {
         _screen.TurnMenuInstance.CounterNumText = (int.Parse(_screen.TurnMenuInstance.CounterNumText) + 1).ToString();
         _gameState.TurnCounter++;
-        _gameState.AutoSave();
+        SaveLoadManager.AutoSave(_gameState);
     }
 
     protected override void LoadContent()
@@ -90,6 +92,21 @@ public class SpaceGame4X : Game
         {
             CameraPos.X -= gameTime.ElapsedGameTime.Milliseconds * CameraSpeed;
         }
+        
+        // Check for save/load input (F5 to save, F9 to load)
+        if (kb.IsKeyDown(Keys.F5) && !_previousKeyboardState.IsKeyDown(Keys.F5))
+        {
+            SaveLoadManager.SaveGame(_gameState);
+        }
+
+        if (kb.IsKeyDown(Keys.F9) && !_previousKeyboardState.IsKeyDown(Keys.F9))
+        {
+            GameState loadedData = SaveLoadManager.LoadGame();
+            if (loadedData != null)
+            {
+                ApplyLoadedGameState(loadedData);
+            }
+        }
 
         int scrollDifference = m.ScrollWheelValue - _scrollLastFrame;
         if (scrollDifference != 0)
@@ -99,7 +116,14 @@ public class SpaceGame4X : Game
         }
 
         _scrollLastFrame = m.ScrollWheelValue;
+        _previousKeyboardState = kb;
         base.Update(gameTime);
+    }
+
+    private void ApplyLoadedGameState(GameState loadedData)
+    {
+        _gameState = loadedData;
+        _screen.TurnMenuInstance.CounterNumText = _gameState.TurnCounter.ToString();
     }
 
     protected override void Draw(GameTime gameTime)

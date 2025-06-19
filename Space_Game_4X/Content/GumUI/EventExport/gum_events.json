@@ -217,6 +217,13 @@
         "ElementType": "Screens",
         "EventType": 5,
         "TimestampUtc": "2025-06-19T14:30:46.2627398Z"
+      },
+      {
+        "NewName": "StarMenu",
+        "OldName": "Star Menu",
+        "ElementType": "Screens",
+        "EventType": 2,
+        "TimestampUtc": "2025-06-19T14:40:12.0350146Z"
       }
     ]
   }

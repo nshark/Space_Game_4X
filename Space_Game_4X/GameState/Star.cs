@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -8,6 +9,7 @@ public class Star
     private static Texture2D[] _starTextures;
     private static Vector2[] _starTextureOrigins;
 
+    [JsonConverter(typeof(Vector2JsonConverter))]
     public Vector2 Position { get; set; }
 
     //determines which star sprite to use - from 0-3

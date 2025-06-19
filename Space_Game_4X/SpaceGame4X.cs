@@ -21,7 +21,7 @@ public class SpaceGame4X : Game
     private HUD screen;
     private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
-    private Star[] _stars;
+    private GameState _gameState = new GameState();
     private int _scrollLastFrame = 0;
     public static Vector2 CameraOffset = Vector2.Zero;
     private readonly IGenerationPolicy _generationPolicy = new RandomRetryGenerationPolicy();
@@ -30,7 +30,7 @@ public class SpaceGame4X : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _stars = _generationPolicy.GenerateStarfield();
+        _gameState.Stars = _generationPolicy.GenerateStarfield();
         _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 
@@ -103,7 +103,7 @@ public class SpaceGame4X : Game
     {
         GraphicsDevice.Clear(Color.Black);
         _spriteBatch.Begin();
-        foreach (var star in _stars)
+        foreach (var star in _gameState.Stars)
         {
             star.AddToSpriteBatch(_spriteBatch);
         }

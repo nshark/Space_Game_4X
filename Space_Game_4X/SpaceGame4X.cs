@@ -30,6 +30,7 @@ public class SpaceGame4X : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        _gameState.Stars = _generationPolicy.GenerateStarfield();
         _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 
@@ -47,7 +48,8 @@ public class SpaceGame4X : Game
     private void OnEndTurn(object sender, EventArgs e)
     {
         _screen.TurnMenuInstance.CounterNumText = (int.Parse(_screen.TurnMenuInstance.CounterNumText) + 1).ToString();
-        _gameState.Save("autosave_" + _screen.TurnMenuInstance.CounterNumText + ".json");
+        _gameState.TurnCounter++;
+        _gameState.AutoSave();
     }
 
     protected override void LoadContent()

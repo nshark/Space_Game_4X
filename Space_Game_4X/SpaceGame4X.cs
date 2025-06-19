@@ -30,7 +30,6 @@ public class SpaceGame4X : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _gameState.Stars = _generationPolicy.GenerateStarfield();
         _scrollLastFrame = Mouse.GetState().ScrollWheelValue;
     }
 
@@ -56,6 +55,7 @@ public class SpaceGame4X : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Star.InitTextures(this);
         Planet.InitTypes();
+        _gameState.Stars = _generationPolicy.GenerateStarfield();
         // TODO: use this.Content to load your game content here
     }
 

@@ -203,6 +203,20 @@
         "ElementType": "Screens",
         "EventType": 6,
         "TimestampUtc": "2025-06-18T15:07:01.7756373Z"
+      },
+      {
+        "NewName": "Star Menu",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 0,
+        "TimestampUtc": "2025-06-19T14:30:11.5854558Z"
+      },
+      {
+        "NewName": "Star Menu.ButtonCloseInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2025-06-19T14:30:46.2627398Z"
       }
     ]
   }

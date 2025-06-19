@@ -3,4 +3,9 @@
 public class GameState
 {
     public Star[] Stars { get; set; }
+
+    public void Save(string name)
+    {
+        
+    }
 }

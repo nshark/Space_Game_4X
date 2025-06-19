@@ -48,6 +48,7 @@ public class SpaceGame4X : Game
     private void OnEndTurn(object sender, EventArgs e)
     {
         screen.TurnMenuInstance.CounterNumText = (int.Parse(screen.TurnMenuInstance.CounterNumText) + 1).ToString();
+        _gameState.Save("autosave_" + screen.TurnMenuInstance.CounterNumText + ".json");
     }
 
     protected override void LoadContent()

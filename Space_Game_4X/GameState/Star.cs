@@ -1,5 +1,3 @@
-using System;
-using System.Globalization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -9,15 +7,12 @@ public class Star
 {
     private static Texture2D[] _starTextures;
     private static Vector2[] _starTextureOrigins;
-    
-    private Vector2 pos;
-    //determines which star sprite to use - from 0-3
-    private int _starType;
 
-    public Vector2 Position
-    {
-        get => pos;
-    }
+    public Vector2 Position { get; set; }
+
+    //determines which star sprite to use - from 0-3
+    public int StarType { get; set; }
+
     public static void InitTextures(Game game)
     {
         _starTextures = new[]
@@ -40,14 +35,14 @@ public class Star
     {
         if (starType == -1)
         {
-            _starType = SpaceGame4X.Rand.Next(0, 3);
+            StarType = SpaceGame4X.Rand.Next(0, 3);
         }
 
-        pos = position;
+        Position = position;
     }
 
     public void AddToSpriteBatch(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_starTextures[_starType], Vector2.Multiply(pos + SpaceGame4X.CameraPos, SpaceGame4X.CameraScale) + SpaceGame4X.CameraOffset, null, Color.White, 0f, _starTextureOrigins[_starType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
+        spriteBatch.Draw(_starTextures[StarType], Vector2.Multiply(Position + SpaceGame4X.CameraPos, SpaceGame4X.CameraScale) + SpaceGame4X.CameraOffset, null, Color.White, 0f, _starTextureOrigins[StarType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
     }
 }

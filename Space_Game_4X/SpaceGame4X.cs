@@ -18,7 +18,7 @@ public class SpaceGame4X : Game
     public static float CameraScale = 1;
     public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
-    private HUD screen;
+    private HUD _screen;
     private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
     private GameState _gameState = new GameState();
@@ -38,23 +38,24 @@ public class SpaceGame4X : Game
     {
         // TODO: Add your initialization logic here
         Gum.Initialize(this, "GumUI/gumUI.gumx");
-        screen = new HUD();
-        screen.TurnMenuInstance.Click += OnEndTurn;
-        screen.TurnMenuInstance.ButtonCategoryState = TurnMenu.ButtonCategory.Enabled;
-        screen.AddToRoot();
+        _screen = new HUD();
+        _screen.TurnMenuInstance.Click += OnEndTurn;
+        _screen.TurnMenuInstance.ButtonCategoryState = TurnMenu.ButtonCategory.Enabled;
+        _screen.AddToRoot();
         base.Initialize();
     }
 
     private void OnEndTurn(object sender, EventArgs e)
     {
-        screen.TurnMenuInstance.CounterNumText = (int.Parse(screen.TurnMenuInstance.CounterNumText) + 1).ToString();
-        _gameState.Save("autosave_" + screen.TurnMenuInstance.CounterNumText + ".json");
+        _screen.TurnMenuInstance.CounterNumText = (int.Parse(_screen.TurnMenuInstance.CounterNumText) + 1).ToString();
+        _gameState.Save("autosave_" + _screen.TurnMenuInstance.CounterNumText + ".json");
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         Star.InitTextures(this);
+        Planet.InitTypes();
         // TODO: use this.Content to load your game content here
     }
 

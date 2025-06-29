@@ -57,9 +57,9 @@ public class Star
         Position = position;
     }
 
-    public void AddToSpriteBatch(SpriteBatch spriteBatch)
+    public void AddToSpriteBatch(SpriteBatch spriteBatch, bool isSelected = false)
     {
-        spriteBatch.Draw(_starTextures[StarType], ComputeScreenPos(), null, Color.White, 0f, _starTextureOrigins[StarType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
+        spriteBatch.Draw(_starTextures[StarType], ComputeScreenPos(), null,isSelected ? Color.Red : Color.White, 0f, _starTextureOrigins[StarType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
     }
 
     private Vector2 ComputeScreenPos()

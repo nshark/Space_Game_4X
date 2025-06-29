@@ -14,7 +14,7 @@ public class SpaceGame4X : Game
 {
     //Consts
     private const float CameraSpeed = 0.1f;
-    
+    private Star _selectedStar = null;
     public static Vector2 CameraPos = new Vector2();
     public static float CameraScale = 1;
     public static Random Rand = new Random();
@@ -108,14 +108,16 @@ public class SpaceGame4X : Game
                 ApplyLoadedGameState(loadedData);
             }
         }
-
+        
         if (_isMouseDownLastFrame && m.LeftButton == ButtonState.Released)
         {
+            _selectedStar = null;
             foreach (var star in _gameState.Stars)
             {
                 if (star.CollidesScreenPos(m.Position))
                 {
                     Console.WriteLine(star.Position.X + "," + star.Position.Y);
+                    SelectStar(star);
                     break;
                 }
             }
@@ -134,6 +136,11 @@ public class SpaceGame4X : Game
         base.Update(gameTime);
     }
 
+    private void SelectStar(Star star)
+    {
+        _selectedStar = star;
+    }
+
     private void ApplyLoadedGameState(GameState loadedData)
     {
         _gameState = loadedData;
@@ -146,9 +153,10 @@ public class SpaceGame4X : Game
         _spriteBatch.Begin();
         foreach (var star in _gameState.Stars)
         {
-            star.AddToSpriteBatch(_spriteBatch);
+            star.AddToSpriteBatch(_spriteBatch, star == _selectedStar);
         }
         _spriteBatch.End();
+        
         // TODO: Add your drawing code here
         Gum.Draw();
         base.Draw(gameTime);

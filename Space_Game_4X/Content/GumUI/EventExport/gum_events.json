@@ -224,6 +224,34 @@
         "ElementType": "Screens",
         "EventType": 2,
         "TimestampUtc": "2025-06-19T14:40:12.0350146Z"
+      },
+      {
+        "NewName": "StarMenu.ListBoxInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2025-06-19T14:54:20.3502112Z"
+      },
+      {
+        "NewName": null,
+        "OldName": "StarMenu.Controls/ButtonClose ButtonCloseInstance in StarMenu",
+        "ElementType": "Screens",
+        "EventType": 6,
+        "TimestampUtc": "2025-06-29T16:32:14.2638926Z"
+      },
+      {
+        "NewName": "StarMenu.ListBoxInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2025-06-29T16:32:25.1715637Z"
+      },
+      {
+        "NewName": "StarMenu.ButtonCloseInstance",
+        "OldName": null,
+        "ElementType": "Screens",
+        "EventType": 5,
+        "TimestampUtc": "2025-06-29T16:33:21.9023122Z"
       }
     ]
   }

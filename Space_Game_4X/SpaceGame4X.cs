@@ -20,6 +20,7 @@ public class SpaceGame4X : Game
     public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
     private HUD _screen;
+    private StarMenu _starMenu;
     private bool _isMouseDownLastFrame = false;
     private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
@@ -41,8 +42,10 @@ public class SpaceGame4X : Game
         // TODO: Add your initialization logic here
         Gum.Initialize(this, "GumUI/gumUI.gumx");
         _screen = new HUD();
+        _starMenu = new StarMenu();
         _screen.TurnMenuInstance.Click += OnEndTurn;
         _screen.TurnMenuInstance.ButtonCategoryState = TurnMenu.ButtonCategory.Enabled;
+        _starMenu.ButtonCloseInstance.Click += OnCloseStarMenu;
         _screen.AddToRoot();
         base.Initialize();
     }
@@ -121,6 +124,11 @@ public class SpaceGame4X : Game
                     break;
                 }
             }
+
+            if (_selectedStar == null)
+            {
+                _starMenu.RemoveFromRoot();
+            }
         }
         
         int scrollDifference = m.ScrollWheelValue - _scrollLastFrame;
@@ -139,6 +147,7 @@ public class SpaceGame4X : Game
     private void SelectStar(Star star)
     {
         _selectedStar = star;
+        _starMenu.AddToRoot();
     }
 
     private void ApplyLoadedGameState(GameState loadedData)
@@ -160,5 +169,10 @@ public class SpaceGame4X : Game
         // TODO: Add your drawing code here
         Gum.Draw();
         base.Draw(gameTime);
+    }
+
+    private void OnCloseStarMenu(object sender, EventArgs e)
+    {
+        _starMenu.RemoveFromRoot();
     }
 }

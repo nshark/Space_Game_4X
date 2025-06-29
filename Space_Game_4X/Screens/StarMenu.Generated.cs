@@ -36,6 +36,7 @@ partial class StarMenu : MonoGameGum.Forms.Controls.FrameworkElement
             return gue;
         });
     }
+    public ListBox ListBoxInstance { get; protected set; }
     public ButtonClose ButtonCloseInstance { get; protected set; }
 
     public StarMenu(InteractiveGue visual) : base(visual) { }
@@ -48,6 +49,7 @@ partial class StarMenu : MonoGameGum.Forms.Controls.FrameworkElement
     protected override void ReactToVisualChanged()
     {
         base.ReactToVisualChanged();
+        ListBoxInstance = MonoGameGum.Forms.GraphicalUiElementFormsExtensions.GetFrameworkElementByName<ListBox>(this.Visual,"ListBoxInstance");
         ButtonCloseInstance = MonoGameGum.Forms.GraphicalUiElementFormsExtensions.GetFrameworkElementByName<ButtonClose>(this.Visual,"ButtonCloseInstance");
         CustomInitialize();
     }

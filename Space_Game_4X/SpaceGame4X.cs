@@ -148,6 +148,14 @@ public class SpaceGame4X : Game
     {
         _selectedStar = star;
         _starMenu.AddToRoot();
+        _starMenu.ListBoxInstance.Items.Clear();
+        if (star.Planets != null)
+        {
+            foreach (var planet in star.Planets)
+            {
+                _starMenu.ListBoxInstance.Items.Add(planet.Type);
+            }
+        }
     }
 
     private void ApplyLoadedGameState(GameState loadedData)

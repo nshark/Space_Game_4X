@@ -20,6 +20,7 @@ public class SpaceGame4X : Game
     public static Random Rand = new Random();
     private GraphicsDeviceManager _graphics;
     private HUD _screen;
+    private bool _isMouseDownLastFrame = false;
     private GumService Gum => GumService.Default;
     private SpriteBatch _spriteBatch;
     private GameState _gameState = new GameState();
@@ -108,6 +109,18 @@ public class SpaceGame4X : Game
             }
         }
 
+        if (_isMouseDownLastFrame && m.LeftButton == ButtonState.Released)
+        {
+            foreach (var star in _gameState.Stars)
+            {
+                if (star.CollidesScreenPos(m.Position))
+                {
+                    Console.WriteLine(star.Position.X + "," + star.Position.Y);
+                    break;
+                }
+            }
+        }
+        
         int scrollDifference = m.ScrollWheelValue - _scrollLastFrame;
         if (scrollDifference != 0)
         {
@@ -116,6 +129,7 @@ public class SpaceGame4X : Game
         }
 
         _scrollLastFrame = m.ScrollWheelValue;
+        _isMouseDownLastFrame = m.LeftButton == ButtonState.Pressed;
         _previousKeyboardState = kb;
         base.Update(gameTime);
     }

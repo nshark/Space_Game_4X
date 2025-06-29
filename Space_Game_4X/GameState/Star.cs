@@ -59,6 +59,22 @@ public class Star
 
     public void AddToSpriteBatch(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(_starTextures[StarType], Vector2.Multiply(Position + SpaceGame4X.CameraPos, SpaceGame4X.CameraScale) + SpaceGame4X.CameraOffset, null, Color.White, 0f, _starTextureOrigins[StarType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
+        spriteBatch.Draw(_starTextures[StarType], ComputeScreenPos(), null, Color.White, 0f, _starTextureOrigins[StarType], SpaceGame4X.CameraScale, SpriteEffects.None, 0);
+    }
+
+    private Vector2 ComputeScreenPos()
+    {
+        return Vector2.Multiply(Position + SpaceGame4X.CameraPos, SpaceGame4X.CameraScale) + SpaceGame4X.CameraOffset;
+    }
+    public bool CollidesScreenPos(Point mousePos)
+    {
+        Vector2 screenPos = ComputeScreenPos();
+        int scaledHalfWidth = (int)(_starTextureOrigins[StarType].X * SpaceGame4X.CameraScale);
+        int scaledHalfHeight = (int)(_starTextureOrigins[StarType].Y * SpaceGame4X.CameraScale);
+        int leftBounds = (int)(screenPos.X - scaledHalfWidth);
+        int rightBounds = (int)(screenPos.X + scaledHalfWidth);
+        int topBounds = (int)(screenPos.Y - scaledHalfHeight);
+        int bottomBounds = (int)(screenPos.Y + scaledHalfHeight);
+        return mousePos.X >= leftBounds && mousePos.X <= rightBounds && mousePos.Y >= topBounds && mousePos.Y <= bottomBounds;
     }
 }
